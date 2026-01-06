@@ -1,0 +1,71 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import Card from '../ui/Card.astro';
+
+const benefits = [
+  {
+    title: 'Diferenciación Competitiva',
+    description: 'Único evento masivo del Mundial con certificación ambiental federal'
+  },
+  {
+    title: 'Credibilidad Institucional',
+    description: 'Respaldo de SEMARNAT y autoridades federales'
+  },
+  {
+    title: 'Alineación ESG',
+    description: 'Cumplimiento verificable de objetivos ambientales corporativos'
+  }
+];
+---
+
+<section id="profepa" class="py-20 md:py-28 px-6 bg-background-secondary">
+  <div class="max-w-6xl mx-auto">
+    <SectionTitle 
+      title="El Valor del Distintivo PROFEPA"
+      subtitle="Certificación ambiental federal para eventos masivos"
+    />
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <!-- Left Column: Image -->
+      <div>
+        <div class="card p-6 md:p-8 bg-gradient-to-br from-geodot-primary-light/10 to-geodot-primary/8 mb-8">
+          <img 
+            src="/images/distintivo-profepa-certificacion.png" 
+            alt="Distintivo PROFEPA" 
+            class="w-full max-h-72 object-contain rounded-lg"
+          />
+        </div>
+        
+        <h3 class="text-2xl font-bold mb-4 text-foreground">
+          Reconocimiento Oficial
+        </h3>
+        <p class="text-foreground-muted leading-relaxed">
+          El Distintivo PROFEPA es el reconocimiento ambiental más prestigioso otorgado por la 
+          Procuraduría Federal de Protección al Ambiente en México, garantizando cumplimiento 
+          normativo federal.
+        </p>
+      </div>
+      
+      <!-- Right Column: Benefits -->
+      <div>
+        <h3 class="text-xl md:text-2xl font-bold mb-6 text-foreground">
+          Beneficios para tu Marca
+        </h3>
+        
+        <div class="space-y-5">
+          {benefits.map((benefit) => (
+            <Card class="p-5 md:p-6">
+              <div class="font-semibold text-lg text-geodot-primary-light mb-2">
+                {benefit.title}
+              </div>
+              <div class="text-sm md:text-base text-foreground-muted leading-relaxed">
+                {benefit.description}
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

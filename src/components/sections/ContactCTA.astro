@@ -1,0 +1,95 @@
+---
+import ContactForm from './ContactForm.astro';
+
+const contacts = [
+  { email: 'enrique.rangel@ambientali.global', color: 'geodot-primary-light' },
+  { email: 'jesus.cortes@Ambientali.global', color: 'geodot-primary-light' },
+  { email: 'luis.perasollo@geodot.app', color: 'geodot-accent' },
+  { email: 'francisco@geodot.app', color: 'geodot-accent' }
+];
+---
+
+<section id="contacto" class="py-20 md:py-28 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 text-gradient">
+        Sé Parte del Mundial más Sustentable
+      </h2>
+      <p class="text-base md:text-lg text-foreground-muted max-w-2xl mx-auto">
+        Posiciona tu marca en el evento más importante del mundo<br class="hidden md:block"/>
+        con certificación ambiental federal verificable
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+      <!-- Contact Form -->
+      <div class="card p-6 md:p-8 order-2 lg:order-1">
+        <h3 class="text-xl font-bold text-foreground mb-6">
+          Solicita Información
+        </h3>
+        <ContactForm />
+      </div>
+      
+      <!-- Contact Info -->
+      <div class="order-1 lg:order-2">
+        <div class="p-6 md:p-8 bg-gradient-to-br from-geodot-primary-light/18 to-geodot-primary/15 border-2 border-geodot-primary-light/35 rounded-2xl shadow-lg shadow-geodot-primary/20 mb-8">
+          <h3 class="text-lg md:text-xl font-bold text-geodot-primary-light mb-6">
+            Contacto Directo
+          </h3>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {contacts.map((contact) => (
+              <a 
+                href={`mailto:${contact.email}`}
+                class="flex items-center gap-3 text-sm text-foreground hover:text-geodot-primary-light transition-colors group"
+              >
+                <svg class={`w-5 h-5 text-${contact.color} flex-shrink-0`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <span class="break-all group-hover:underline">{contact.email}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+        
+        <!-- Partners Logos -->
+        <div class="space-y-6">
+          <!-- Main Partners -->
+          <div class="flex items-center justify-center gap-4 md:gap-6 flex-wrap">
+            <img src="/images/logos/coparmex-logo-white.png" alt="COPARMEX CDMX" class="h-10 md:h-12 w-auto opacity-85" />
+            <span class="text-foreground-subtle opacity-60">&times;</span>
+            <img src="/images/logos/coparmex-comision-turismo-white.png" alt="Comisión de Turismo" class="h-8 md:h-10 w-auto opacity-85" />
+            <span class="text-foreground-subtle opacity-60">&times;</span>
+            <img src="/images/logos/coparmex-comision-energia-white.png" alt="Comisión de Sustentabilidad y Energía" class="h-8 md:h-10 w-auto opacity-85" />
+            <span class="text-foreground-subtle opacity-60">&times;</span>
+            <img src="/images/logos/move-on-logo-white.png" alt="MOVE ON" class="h-8 md:h-10 w-auto opacity-85" />
+          </div>
+          
+          <!-- Collaborators -->
+          <div class="flex items-center justify-center gap-3 md:gap-5 flex-wrap opacity-75">
+            <img src="/images/logos/ambientali-logo-white.png" alt="AMBIENTALI" class="h-8 w-auto" />
+            <span class="text-foreground-subtle opacity-60">&bull;</span>
+            <img src="/images/logos/geodot-logo-white.png" alt="Geodot" class="h-7 w-auto" />
+            <span class="text-foreground-subtle opacity-60">&bull;</span>
+            <img src="/images/logos/carbonsig-logo-white.svg" alt="Carbón SIG" class="h-7 w-auto" />
+            <span class="text-foreground-subtle opacity-60">&bull;</span>
+            <img src="/images/logos/persis-logo-white.png" alt="Persis" class="h-7 w-auto" />
+            <span class="text-foreground-subtle opacity-60">&bull;</span>
+            <img src="/images/logos/pruhesa-logo-white.png" alt="Pruhesa" class="h-7 w-auto" />
+            <span class="text-foreground-subtle opacity-60">&bull;</span>
+            <img src="/images/logos/ecomx-logo-white.png" alt="ECOMX" class="h-6 w-auto" />
+          </div>
+          
+          <!-- Additional -->
+          <div class="pt-4 border-t border-geodot-primary-light/20 text-center">
+            <p class="text-xs text-foreground-subtle opacity-85">
+              <span class="font-medium">Empresas Colaboradoras:</span> GEL KEEN (artículos de limpieza ecológicos)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

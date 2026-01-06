@@ -1,0 +1,93 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+
+const packages = [
+  {
+    name: 'Bronce',
+    price: '$400,000 MXN',
+    color: 'bronze',
+    borderColor: 'border-bronze/30',
+    textColor: 'text-bronze',
+    benefits: [
+      'Logo en materiales digitales e impresos',
+      'Promoción en base COPARMEX y medios propios',
+      'Presencia en 20 festivales',
+      'Acceso a dashboard de métricas',
+      'Certificado de patrocinio PROFEPA'
+    ]
+  },
+  {
+    name: 'Plata',
+    price: '$500,000 MXN',
+    color: 'silver',
+    borderColor: 'border-silver/40',
+    textColor: 'text-silver',
+    benefits: [
+      'Todo lo de Bronce',
+      'Logo destacado en estaciones de reciclaje',
+      'Mención en nota de prensa oficial',
+      'Presencia en 40 festivales',
+      'Stand promocional en 10 eventos'
+    ]
+  },
+  {
+    name: 'Oro',
+    price: '$1,000,000 MXN',
+    color: 'gold',
+    borderColor: 'border-gold/40',
+    textColor: 'text-gold',
+    benefits: [
+      'Todo lo de Plata',
+      'Logo destacado en todas las pantallas',
+      'Rueda de prensa conjunta con COPARMEX',
+      'Presencia en 60 festivales',
+      'Activación de marca en 15 eventos'
+    ]
+  },
+  {
+    name: 'Platino',
+    price: '$1,800,000 MXN',
+    color: 'platinum',
+    borderColor: 'border-platinum/50',
+    textColor: 'text-platinum',
+    benefits: [
+      'Todo lo de Oro',
+      'Patrocinio destacado en los 80 festivales',
+      'Cobranding en materiales oficiales',
+      'Participación en foro con PROFEPA',
+      'Campaña de PR personalizada'
+    ]
+  }
+];
+---
+
+<section id="paquetes" class="py-20 md:py-28 px-6 bg-background-secondary">
+  <div class="max-w-6xl mx-auto">
+    <SectionTitle 
+      title="Paquetes de Patrocinio"
+      subtitle="Cuatro niveles de inversión para asociarse con el distintivo PROFEPA"
+    />
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      {packages.map((pkg) => (
+        <div class={`card p-6 md:p-8 ${pkg.borderColor}`}>
+          <div class={`text-2xl md:text-3xl font-extrabold mb-2 ${pkg.textColor}`}>
+            {pkg.name}
+          </div>
+          <div class="text-3xl md:text-4xl font-extrabold mb-6 text-foreground">
+            {pkg.price}
+          </div>
+          <ul class="space-y-3 text-sm md:text-base text-foreground-muted">
+            {pkg.benefits.map((benefit) => (
+              <li class="flex items-start gap-2">
+                <span class="text-geodot-primary-light mt-0.5">✓</span>
+                {benefit}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+

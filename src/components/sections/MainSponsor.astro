@@ -1,0 +1,72 @@
+---
+import Badge from '../ui/Badge.astro';
+
+const features = [
+  {
+    title: 'Naming Rights Completo',
+    description: '"Tu Cancha COPARMEX presentado por [TU MARCA]"'
+  },
+  {
+    title: 'Exclusividad Sectorial',
+    description: 'Sin competidores directos en el evento'
+  },
+  {
+    title: 'Cobranding Oficial PROFEPA',
+    description: 'Logo conjunto en el distintivo ambiental'
+  },
+  {
+    title: 'Campaña Institucional',
+    description: 'Estrategia de PR y comunicación personalizada'
+  }
+];
+---
+
+<section id="main-sponsor" class="py-20 md:py-28 px-6 relative overflow-hidden">
+  <!-- Background effect -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.15)_0%,rgba(15,118,110,0.1)_40%,transparent_100%)]"></div>
+  <div class="absolute inset-0 border-2 border-env-green/25 rounded-none md:rounded-3xl mx-0 md:mx-6"></div>
+  
+  <div class="relative z-10 max-w-5xl mx-auto text-center">
+    <Badge class="mb-6 bg-gradient-to-r from-env-green/30 to-geodot-primary/25 border-env-green/50">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+      </svg>
+      Patrocinio Exclusivo
+    </Badge>
+    
+    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 text-env-green">
+      Main Sustainability Sponsor
+    </h2>
+    
+    <div class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-foreground">
+      $9,000,000 MXN
+    </div>
+    
+    <p class="text-base md:text-lg text-foreground-muted mb-10 max-w-3xl mx-auto leading-relaxed">
+      Patrocinio principal de sustentabilidad para los 80 festivales del Mundial 2026<br class="hidden md:block"/>
+      Naming rights completo y asociación exclusiva con el Distintivo PROFEPA
+    </p>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
+      {features.map((feature) => (
+        <div class="card p-5 md:p-6 bg-gradient-to-br from-env-green/15 to-geodot-primary/12 border-env-green/30">
+          <div class="font-bold text-env-green mb-2">
+            {feature.title}
+          </div>
+          <div class="text-sm md:text-base text-foreground-muted">
+            {feature.description}
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="p-5 md:p-6 bg-gradient-to-r from-env-green/20 to-geodot-primary/18 border border-env-green/40 rounded-xl">
+      <p class="text-sm md:text-base text-foreground-muted">
+        <strong class="text-env-green">Incluye:</strong> Todos los beneficios de Platino + Naming rights + 
+        Exclusividad sectorial + Presencia destacada en los 80 festivales + Foro con autoridades federales + 
+        Campaña de comunicación institucional
+      </p>
+    </div>
+  </div>
+</section>
+

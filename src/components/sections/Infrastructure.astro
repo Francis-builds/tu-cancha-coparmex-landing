@@ -1,0 +1,85 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import Card from '../ui/Card.astro';
+
+const features = [
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>`,
+    title: 'Geolocalización',
+    description: 'Tracking de flujo de asistentes por zona y evento'
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+      <circle cx="9" cy="7" r="4"/>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>`,
+    title: 'Reciclaje Verificado',
+    description: 'Peso y tipo de residuos por estación'
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="12" y1="20" x2="12" y2="10"/>
+      <line x1="18" y1="20" x2="18" y2="4"/>
+      <line x1="6" y1="20" x2="6" y2="16"/>
+    </svg>`,
+    title: 'Reportes Automatizados',
+    description: 'Exportables para reportes ESG corporativos'
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>`,
+    title: 'Auditoría PROFEPA',
+    description: 'Datos certificados por autoridad federal'
+  }
+];
+---
+
+<section id="infraestructura" class="py-20 md:py-28 px-6 bg-background-secondary">
+  <div class="max-w-6xl mx-auto">
+    <SectionTitle 
+      title="Infraestructura de Medición"
+      subtitle="Tecnología Geodot para métricas verificables en tiempo real"
+    />
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <!-- Left: Image -->
+      <div class="card p-6 overflow-hidden bg-gradient-to-br from-background-card to-geodot-primary/8">
+        <img 
+          src="/images/infraestructura-medicion-ambiental.png" 
+          alt="Infraestructura de Medición Ambiental" 
+          class="w-full h-auto rounded-lg"
+        />
+      </div>
+      
+      <!-- Right: Features -->
+      <div class="space-y-4 md:space-y-5">
+        {features.map((feature) => (
+          <Card class="p-5">
+            <div class="flex items-start gap-4">
+              <div class="w-6 h-6 text-geodot-primary-light flex-shrink-0 mt-0.5" set:html={feature.icon} />
+              <div>
+                <div class="font-semibold text-geodot-primary-light mb-1">
+                  {feature.title}
+                </div>
+                <div class="text-sm text-foreground-muted">
+                  {feature.description}
+                </div>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+    
+    <div class="mt-10 text-center">
+      <img src="/images/logos/geodot-logo-white.png" alt="Geodot" class="h-7 w-auto mx-auto opacity-60" />
+    </div>
+  </div>
+</section>
+

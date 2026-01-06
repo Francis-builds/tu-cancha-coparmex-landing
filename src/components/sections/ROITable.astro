@@ -1,0 +1,142 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+
+const channels = [
+  {
+    name: 'Patrocinio Tu Cancha',
+    reach: '200K+ presencial<br/>Base COPARMEX + medios propios',
+    measurement: true,
+    certification: true,
+    cost: '$500K - $9M MXN',
+    highlight: true
+  },
+  {
+    name: 'TV Spot 30 seg (primetime)',
+    reach: '~500K viewers',
+    measurement: false,
+    certification: false,
+    cost: '$500K+ MXN/mes',
+    highlight: false
+  },
+  {
+    name: 'Vallas publicitarias (10 ubicaciones)',
+    reach: '~100K impresiones/día',
+    measurement: false,
+    certification: false,
+    cost: '$300K MXN/mes',
+    highlight: false
+  },
+  {
+    name: 'Campaña digital (Meta + Google)',
+    reach: '200K-500K impresiones',
+    measurement: true,
+    certification: false,
+    cost: '$150K+ MXN/mes',
+    highlight: false
+  },
+  {
+    name: 'Patrocinio deportivo tradicional',
+    reach: 'Variable',
+    measurement: false,
+    certification: false,
+    cost: '$500K - $5M+ MXN',
+    highlight: false
+  }
+];
+---
+
+<section id="roi" class="py-20 md:py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <SectionTitle 
+      title="ROI Medible y Verificable"
+      subtitle="Comparación con otros canales de marketing tradicional"
+    />
+    
+    <!-- Desktop Table -->
+    <div class="hidden md:block overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-gradient-to-r from-geodot-primary-light/20 to-geodot-primary/15 border-b-2 border-geodot-primary-light/40">
+            <th class="p-4 text-left text-geodot-primary-light font-bold">Canal</th>
+            <th class="p-4 text-center text-geodot-primary-light font-bold">Alcance</th>
+            <th class="p-4 text-center text-geodot-primary-light font-bold">Medición</th>
+            <th class="p-4 text-center text-geodot-primary-light font-bold">Certificación</th>
+            <th class="p-4 text-right text-geodot-primary-light font-bold">Costo Estimado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {channels.map((channel) => (
+            <tr class={`border-b border-geodot-primary-light/20 ${channel.highlight ? 'bg-geodot-primary/5' : ''}`}>
+              <td class={`p-4 ${channel.highlight ? 'text-foreground font-semibold' : 'text-foreground-muted'}`}>
+                {channel.name}
+              </td>
+              <td class="p-4 text-center text-foreground-muted" set:html={channel.reach} />
+              <td class="p-4 text-center">
+                {channel.measurement ? (
+                  <span class="text-env-green">✓ Verificable</span>
+                ) : (
+                  <span class="text-foreground-subtle">Estimado</span>
+                )}
+              </td>
+              <td class="p-4 text-center">
+                {channel.certification ? (
+                  <span class="text-env-green">✓ PROFEPA</span>
+                ) : (
+                  <span class="text-foreground-subtle">—</span>
+                )}
+              </td>
+              <td class={`p-4 text-right ${channel.highlight ? 'text-foreground' : 'text-foreground-muted'}`}>
+                {channel.cost}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Mobile Cards -->
+    <div class="md:hidden space-y-4">
+      {channels.map((channel) => (
+        <div class={`card p-5 ${channel.highlight ? 'border-geodot-primary-light/40' : ''}`}>
+          <div class={`font-semibold mb-3 ${channel.highlight ? 'text-foreground' : 'text-foreground-muted'}`}>
+            {channel.name}
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-sm">
+            <div>
+              <span class="text-foreground-subtle block mb-1">Alcance</span>
+              <span class="text-foreground-muted" set:html={channel.reach} />
+            </div>
+            <div>
+              <span class="text-foreground-subtle block mb-1">Costo</span>
+              <span class="text-foreground-muted">{channel.cost}</span>
+            </div>
+            <div>
+              <span class="text-foreground-subtle block mb-1">Medición</span>
+              {channel.measurement ? (
+                <span class="text-env-green">✓ Verificable</span>
+              ) : (
+                <span class="text-foreground-subtle">Estimado</span>
+              )}
+            </div>
+            <div>
+              <span class="text-foreground-subtle block mb-1">Certificación</span>
+              {channel.certification ? (
+                <span class="text-env-green">✓ PROFEPA</span>
+              ) : (
+                <span class="text-foreground-subtle">—</span>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="mt-8 p-5 md:p-6 bg-geodot-primary-light/10 rounded-xl border border-geodot-primary-light/30">
+      <p class="text-sm md:text-base text-foreground-muted text-center">
+        <strong class="text-geodot-primary-light">Ventaja única:</strong> Único canal con certificación ambiental 
+        federal + medición verificable + asociación institucional con COPARMEX y PROFEPA
+      </p>
+    </div>
+  </div>
+</section>
+

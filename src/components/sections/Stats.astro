@@ -1,0 +1,53 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import Card from '../ui/Card.astro';
+
+const stats = [
+  {
+    value: '+200,000',
+    label: 'Asistentes Totales',
+    description: '80 eventos × 2,500 personas promedio'
+  },
+  {
+    value: '640 hrs',
+    label: 'Tiempo de Exposición',
+    description: '80 eventos × 8 horas continuas'
+  },
+  {
+    value: 'COPARMEX',
+    label: 'Promoción Institucional',
+    description: 'Base empresarial + medios propios (tucanchacoparmex.com)'
+  },
+  {
+    value: '100%',
+    label: 'Certificación Federal',
+    description: 'Distintivo PROFEPA en todos los eventos'
+  }
+];
+---
+
+<section id="magnitud" class="py-20 md:py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <SectionTitle 
+      title="La Magnitud del Proyecto"
+      subtitle="80 festivales distribuidos en 5 alcaldías de CDMX durante el Mundial 2026"
+    />
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      {stats.map((stat) => (
+        <Card class="text-center p-8 md:p-10">
+          <div class="text-4xl md:text-5xl font-extrabold mb-3 text-gradient">
+            {stat.value}
+          </div>
+          <div class="text-lg md:text-xl text-foreground font-semibold mb-2">
+            {stat.label}
+          </div>
+          <div class="text-sm md:text-base text-foreground-subtle">
+            {stat.description}
+          </div>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
+

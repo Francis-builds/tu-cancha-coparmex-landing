@@ -1,0 +1,89 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import Card from '../ui/Card.astro';
+
+const touchpoints = [
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 3h18v18H3zM9 3v18"/>
+      <path d="M3 9h18M3 15h18"/>
+    </svg>`,
+    title: 'Puntos de Recolección',
+    description: 'Estaciones de reciclaje diferenciado con señalización de marca',
+    highlight: 'Presencia en acción ambiental directa'
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+      <line x1="6" y1="1" x2="6" y2="4"/>
+      <line x1="10" y1="1" x2="10" y2="4"/>
+      <line x1="14" y1="1" x2="14" y2="4"/>
+    </svg>`,
+    title: 'Expedición de Alimentos',
+    description: 'Zonas de distribución de alimentos sustentables con branding visible',
+    highlight: 'Asociación con consumo responsable'
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/>
+    </svg>`,
+    title: 'Puntos de Reciclaje',
+    description: 'Centros de acopio con métricas en tiempo real y señalización de sponsor',
+    highlight: 'Impacto medible y visible'
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+      <line x1="7" y1="2" x2="7" y2="22"/>
+      <line x1="17" y1="2" x2="17" y2="22"/>
+      <line x1="2" y1="12" x2="22" y2="12"/>
+      <line x1="2" y1="7" x2="7" y2="7"/>
+      <line x1="2" y1="17" x2="7" y2="17"/>
+      <line x1="17" y1="17" x2="22" y2="17"/>
+      <line x1="17" y1="7" x2="22" y2="7"/>
+    </svg>`,
+    title: 'Publicidad Integral',
+    description: 'Pantallas de transmisión, lonas, vallas, señalización en accesos y sanitarios',
+    highlight: '360° de visibilidad de marca'
+  }
+];
+---
+
+<section id="visibilidad" class="py-20 md:py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+    <SectionTitle 
+      title="Máxima Visibilidad de Marca"
+      subtitle="Presencia integral en todos los puntos de contacto del evento"
+    />
+    
+    <p class="text-center text-sm text-foreground-subtle mb-10 -mt-6">
+      Incluye: Pantallas &bull; Lonas &bull; Vallas &bull; Accesos &bull; Sanitarios &bull; Módulos de Monitoreo
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+      {touchpoints.map((point) => (
+        <Card class="p-7 md:p-8">
+          <div class="w-12 h-12 text-geodot-primary-light mb-5" set:html={point.icon} />
+          <h3 class="text-xl md:text-2xl font-bold mb-3 text-foreground">
+            {point.title}
+          </h3>
+          <p class="text-sm md:text-base text-foreground-muted leading-relaxed mb-4">
+            {point.description}
+          </p>
+          <div class="text-sm font-semibold text-geodot-primary-light">
+            {point.highlight}
+          </div>
+        </Card>
+      ))}
+    </div>
+    
+    <div class="mt-10 p-5 md:p-6 bg-geodot-primary-light/10 rounded-xl border border-geodot-primary-light/30">
+      <p class="text-sm md:text-base text-foreground-muted text-center">
+        <strong class="text-geodot-primary-light">Enfoque en sustentabilidad:</strong> Todos los puntos de contacto 
+        están en estaciones de gestión ambiental, asociando tu marca directamente con acciones ecológicas verificables
+      </p>
+    </div>
+  </div>
+</section>
+

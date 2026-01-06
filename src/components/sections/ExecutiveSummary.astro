@@ -1,0 +1,86 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import Card from '../ui/Card.astro';
+
+const keyFacts = [
+  { value: '80', label: 'Festivales en 5 alcaldías CDMX' },
+  { value: '+200K', label: 'Asistentes presenciales totales' },
+  { value: 'COPARMEX', label: 'Promoción en base empresarial y medios propios' },
+  { value: '100%', label: 'Certificación Federal PROFEPA', green: true }
+];
+
+const valueProps = [
+  {
+    title: 'Único con Certificación Federal',
+    description: 'Distintivo PROFEPA avalado por SEMARNAT',
+    color: 'env-green'
+  },
+  {
+    title: 'ROI Medible y Verificable',
+    description: 'Plataforma Geodot con métricas en tiempo real',
+    color: 'geodot-primary-light'
+  },
+  {
+    title: 'Mundial 2026',
+    description: 'El evento deportivo más importante del mundo',
+    color: 'geodot-accent'
+  },
+  {
+    title: 'Red Institucional Premium',
+    description: 'COPARMEX + PROFEPA + 5 Alcaldías CDMX',
+    color: 'env-gold'
+  }
+];
+---
+
+<section id="resumen" class="py-20 md:py-28 px-6 bg-background-secondary">
+  <div class="max-w-6xl mx-auto">
+    <SectionTitle 
+      title="Resumen Ejecutivo"
+      subtitle="Por qué invertir en Tu Cancha COPARMEX - Mundial 2026"
+    />
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+      <!-- Left: Key Facts -->
+      <div>
+        <h3 class="text-xl md:text-2xl font-bold mb-6 text-foreground">
+          Datos Clave del Proyecto
+        </h3>
+        
+        <div class="space-y-4">
+          {keyFacts.map((fact) => (
+            <Card class="p-5">
+              <div class={`text-3xl md:text-4xl font-extrabold mb-1 ${fact.green ? 'text-env-green' : 'text-gradient'}`}>
+                {fact.value}
+              </div>
+              <div class="text-sm md:text-base text-foreground-muted">
+                {fact.label}
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+      
+      <!-- Right: Value Props -->
+      <div>
+        <h3 class="text-xl md:text-2xl font-bold mb-6 text-foreground">
+          Propuesta de Valor Única
+        </h3>
+        
+        <div class="space-y-5">
+          {valueProps.map((prop) => (
+            <div class={`p-5 bg-gradient-to-r from-${prop.color}/12 to-geodot-primary/12 border-l-4 border-${prop.color} rounded-lg`}>
+              <div class={`font-bold text-${prop.color} mb-1`}>
+                {prop.title}
+              </div>
+              <div class="text-sm md:text-base text-foreground-muted">
+                {prop.description}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

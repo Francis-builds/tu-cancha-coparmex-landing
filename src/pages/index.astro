@@ -1,16 +1,41 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
 
+// Components
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+// Sections
+import Hero from '../components/sections/Hero.astro';
+import Stats from '../components/sections/Stats.astro';
+import ProfepaValue from '../components/sections/ProfepaValue.astro';
+import Benefits from '../components/sections/Benefits.astro';
+import Infrastructure from '../components/sections/Infrastructure.astro';
+import Visibility from '../components/sections/Visibility.astro';
+import SponsorPackages from '../components/sections/SponsorPackages.astro';
+import MainSponsor from '../components/sections/MainSponsor.astro';
+import ROITable from '../components/sections/ROITable.astro';
+import ExecutiveSummary from '../components/sections/ExecutiveSummary.astro';
+import ContactCTA from '../components/sections/ContactCTA.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Tu Cancha COPARMEX - Mundial 2026 | Distintivo PROFEPA">
+  <Navigation />
+  
+  <main class="pt-16">
+    <Hero />
+    <Stats />
+    <ProfepaValue />
+    <Benefits />
+    <Infrastructure />
+    <Visibility />
+    <SponsorPackages />
+    <MainSponsor />
+    <ROITable />
+    <ExecutiveSummary />
+    <ContactCTA />
+  </main>
+  
+  <Footer />
+</Layout>

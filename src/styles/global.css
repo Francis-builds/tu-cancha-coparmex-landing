@@ -1,1 +1,89 @@
 @import "tailwindcss";
+
+@theme {
+  /* Typography */
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* Geodot Brand Colors */
+  --color-geodot-primary: #0f766e;
+  --color-geodot-primary-dark: #0d9488;
+  --color-geodot-primary-light: #14b8a6;
+  --color-geodot-accent: #22d3ee;
+
+  /* Backgrounds */
+  --color-background: #030712;
+  --color-background-secondary: #0a0f1a;
+  --color-background-card: #111827;
+  --color-background-elevated: #1f2937;
+
+  /* Text */
+  --color-foreground: #f9fafb;
+  --color-foreground-muted: #9ca3af;
+  --color-foreground-subtle: #6b7280;
+
+  /* Environmental theme */
+  --color-env-green: #10b981;
+  --color-env-gold: #fbbf24;
+
+  /* Bronze/Silver/Gold/Platinum */
+  --color-bronze: #cd7f32;
+  --color-silver: #c0c0c0;
+  --color-gold: #ffd700;
+  --color-platinum: #e5e4e2;
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Text gradient utility */
+.text-gradient {
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 50%, #14b8a6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card base */
+.card {
+  background: linear-gradient(135deg, #111827 0%, rgba(15, 118, 110, 0.12) 100%);
+  border: 1px solid rgba(20, 184, 166, 0.2);
+  border-radius: 1rem;
+}
+
+/* Badge base */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.25) 0%, rgba(15, 118, 110, 0.18) 100%);
+  border: 1px solid rgba(20, 184, 166, 0.4);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-geodot-primary-light);
+}
+
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-geodot-primary-light);
+  outline-offset: 2px;
+}

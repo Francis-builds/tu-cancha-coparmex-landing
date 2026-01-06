@@ -1,0 +1,116 @@
+---
+const sponsorPackages = [
+  { value: 'bronce', label: 'Bronce ($400,000 MXN)' },
+  { value: 'plata', label: 'Plata ($500,000 MXN)' },
+  { value: 'oro', label: 'Oro ($1,000,000 MXN)' },
+  { value: 'platino', label: 'Platino ($1,800,000 MXN)' },
+  { value: 'main-sponsor', label: 'Main Sustainability Sponsor ($9,000,000 MXN)' },
+  { value: 'no-definido', label: 'Aún no definido' }
+];
+---
+
+<form 
+  action="https://formspree.io/f/YOUR_FORM_ID" 
+  method="POST"
+  class="space-y-5"
+>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <!-- Nombre -->
+    <div>
+      <label for="nombre" class="block text-sm font-medium text-foreground-muted mb-2">
+        Nombre completo *
+      </label>
+      <input 
+        type="text" 
+        id="nombre" 
+        name="nombre" 
+        required
+        class="w-full px-4 py-3 bg-background-card border border-geodot-primary-light/30 rounded-lg text-foreground placeholder-foreground-subtle focus:outline-none focus:border-geodot-primary-light focus:ring-1 focus:ring-geodot-primary-light transition-colors"
+        placeholder="Tu nombre"
+      />
+    </div>
+    
+    <!-- Email -->
+    <div>
+      <label for="email" class="block text-sm font-medium text-foreground-muted mb-2">
+        Email corporativo *
+      </label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        required
+        class="w-full px-4 py-3 bg-background-card border border-geodot-primary-light/30 rounded-lg text-foreground placeholder-foreground-subtle focus:outline-none focus:border-geodot-primary-light focus:ring-1 focus:ring-geodot-primary-light transition-colors"
+        placeholder="tu@empresa.com"
+      />
+    </div>
+  </div>
+  
+  <!-- Empresa -->
+  <div>
+    <label for="empresa" class="block text-sm font-medium text-foreground-muted mb-2">
+      Empresa *
+    </label>
+    <input 
+      type="text" 
+      id="empresa" 
+      name="empresa" 
+      required
+      class="w-full px-4 py-3 bg-background-card border border-geodot-primary-light/30 rounded-lg text-foreground placeholder-foreground-subtle focus:outline-none focus:border-geodot-primary-light focus:ring-1 focus:ring-geodot-primary-light transition-colors"
+      placeholder="Nombre de tu empresa"
+    />
+  </div>
+  
+  <!-- Paquete de interés -->
+  <div>
+    <label for="paquete" class="block text-sm font-medium text-foreground-muted mb-2">
+      Paquete de interés *
+    </label>
+    <select 
+      id="paquete" 
+      name="paquete" 
+      required
+      class="w-full px-4 py-3 bg-background-card border border-geodot-primary-light/30 rounded-lg text-foreground focus:outline-none focus:border-geodot-primary-light focus:ring-1 focus:ring-geodot-primary-light transition-colors cursor-pointer"
+    >
+      <option value="" disabled selected>Selecciona un paquete</option>
+      {sponsorPackages.map((pkg) => (
+        <option value={pkg.value}>{pkg.label}</option>
+      ))}
+    </select>
+  </div>
+  
+  <!-- Mensaje -->
+  <div>
+    <label for="mensaje" class="block text-sm font-medium text-foreground-muted mb-2">
+      Mensaje (opcional)
+    </label>
+    <textarea 
+      id="mensaje" 
+      name="mensaje" 
+      rows="4"
+      class="w-full px-4 py-3 bg-background-card border border-geodot-primary-light/30 rounded-lg text-foreground placeholder-foreground-subtle focus:outline-none focus:border-geodot-primary-light focus:ring-1 focus:ring-geodot-primary-light transition-colors resize-none"
+      placeholder="¿Tienes alguna pregunta o comentario?"
+    ></textarea>
+  </div>
+  
+  <!-- Submit -->
+  <button 
+    type="submit"
+    class="w-full py-4 px-6 bg-gradient-to-r from-geodot-primary to-geodot-primary-light text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-geodot-primary/30 transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-geodot-primary-light focus:ring-offset-2 focus:ring-offset-background"
+  >
+    Enviar Solicitud de Información
+  </button>
+  
+  <p class="text-xs text-foreground-subtle text-center mt-4">
+    Al enviar este formulario, aceptas que nos comuniquemos contigo respecto a las oportunidades de patrocinio.
+  </p>
+</form>
+
+<style>
+  /* Fix for select dropdown in dark mode */
+  select option {
+    background-color: #111827;
+    color: #f9fafb;
+  }
+</style>
+

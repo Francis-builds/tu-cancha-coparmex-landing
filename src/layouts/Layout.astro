@@ -1,0 +1,75 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Tu Cancha COPARMEX - El Mundial más Sustentable de la Historia. 80 Festivales, +200,000 Asistentes, Certificación PROFEPA." 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/hero-background.jpeg" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-background text-foreground font-body antialiased">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    /* Geodot Brand Colors */
+    --geodot-primary: #0f766e;
+    --geodot-primary-dark: #0d9488;
+    --geodot-primary-light: #14b8a6;
+    --geodot-accent: #22d3ee;
+
+    /* Backgrounds */
+    --background: #030712;
+    --background-secondary: #0a0f1a;
+    --background-card: #111827;
+    --background-elevated: #1f2937;
+
+    /* Text */
+    --foreground: #f9fafb;
+    --foreground-muted: #9ca3af;
+    --foreground-subtle: #6b7280;
+
+    /* Environmental theme */
+    --env-green: #10b981;
+    --env-gold: #fbbf24;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #0f766e 0%, #0d9488 50%, #14b8a6 100%);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
