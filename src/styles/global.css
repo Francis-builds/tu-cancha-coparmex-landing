@@ -11,16 +11,15 @@
   --color-geodot-primary-light: #14b8a6;
   --color-geodot-accent: #22d3ee;
 
-  /* Backgrounds */
-  --color-background: #030712;
-  --color-background-secondary: #0a0f1a;
-  --color-background-card: #111827;
-  --color-background-elevated: #1f2937;
-
-  /* Text */
-  --color-foreground: #f9fafb;
-  --color-foreground-muted: #9ca3af;
-  --color-foreground-subtle: #6b7280;
+  /* Theme-aware colors (CSS variables that change with theme) */
+  --color-background: var(--theme-background);
+  --color-background-secondary: var(--theme-background-secondary);
+  --color-background-card: var(--theme-background-card);
+  --color-background-elevated: var(--theme-background-elevated);
+  --color-foreground: var(--theme-foreground);
+  --color-foreground-muted: var(--theme-foreground-muted);
+  --color-foreground-subtle: var(--theme-foreground-subtle);
+  --color-border: var(--theme-border);
 
   /* Environmental theme */
   --color-env-green: #10b981;
@@ -31,6 +30,44 @@
   --color-silver: #c0c0c0;
   --color-gold: #ffd700;
   --color-platinum: #e5e4e2;
+}
+
+/* Dark Mode (default) */
+:root {
+  --theme-background: #030712;
+  --theme-background-secondary: #0a0f1a;
+  --theme-background-card: #111827;
+  --theme-background-elevated: #1f2937;
+  --theme-foreground: #f9fafb;
+  --theme-foreground-muted: #9ca3af;
+  --theme-foreground-subtle: #6b7280;
+  --theme-border: rgba(20, 184, 166, 0.2);
+}
+
+/* Light Mode */
+:root[data-theme="light"] {
+  --theme-background: #f8fafc;
+  --theme-background-secondary: #f1f5f9;
+  --theme-background-card: #ffffff;
+  --theme-background-elevated: #e2e8f0;
+  --theme-foreground: #0f172a;
+  --theme-foreground-muted: #475569;
+  --theme-foreground-subtle: #64748b;
+  --theme-border: rgba(15, 118, 110, 0.25);
+}
+
+/* System preference detection (when no explicit choice) */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --theme-background: #f8fafc;
+    --theme-background-secondary: #f1f5f9;
+    --theme-background-card: #ffffff;
+    --theme-background-elevated: #e2e8f0;
+    --theme-foreground: #0f172a;
+    --theme-foreground-muted: #475569;
+    --theme-foreground-subtle: #64748b;
+    --theme-border: rgba(15, 118, 110, 0.25);
+  }
 }
 
 /* Base styles */
@@ -56,11 +93,41 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 
-/* Card base */
+/* Darker text gradient for light mode (better contrast) */
+:root[data-theme="light"] .text-gradient {
+  background: linear-gradient(135deg, #0d5c56 0%, #0a7a70 50%, #0f8a7d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .text-gradient {
+    background: linear-gradient(135deg, #0d5c56 0%, #0a7a70 50%, #0f8a7d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Card base - dark mode */
 .card {
-  background: linear-gradient(135deg, #111827 0%, rgba(15, 118, 110, 0.12) 100%);
-  border: 1px solid rgba(20, 184, 166, 0.2);
+  background: linear-gradient(135deg, var(--theme-background-card) 0%, rgba(15, 118, 110, 0.12) 100%);
+  border: 1px solid var(--theme-border);
   border-radius: 1rem;
+}
+
+/* Card base - light mode */
+:root[data-theme="light"] .card {
+  background: linear-gradient(135deg, #ffffff 0%, rgba(15, 118, 110, 0.08) 100%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .card {
+    background: linear-gradient(135deg, #ffffff 0%, rgba(15, 118, 110, 0.08) 100%);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
 }
 
 /* Badge base */
@@ -77,6 +144,21 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-geodot-primary-light);
 }
 
+/* Badge - light mode (darker text for contrast) */
+:root[data-theme="light"] .badge {
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.15) 0%, rgba(13, 148, 136, 0.12) 100%);
+  border: 1px solid rgba(15, 118, 110, 0.35);
+  color: #0d5c56;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .badge {
+    background: linear-gradient(135deg, rgba(15, 118, 110, 0.15) 0%, rgba(13, 148, 136, 0.12) 100%);
+    border: 1px solid rgba(15, 118, 110, 0.35);
+    color: #0d5c56;
+  }
+}
+
 /* Smooth scroll for anchor links */
 html {
   scroll-behavior: smooth;
@@ -86,4 +168,94 @@ html {
 :focus-visible {
   outline: 2px solid var(--color-geodot-primary-light);
   outline-offset: 2px;
+}
+
+/* ============================================
+   LIGHT MODE SPECIFIC ADJUSTMENTS
+   ============================================ */
+
+/* Invert white logos in light mode */
+.logo-adaptive {
+  filter: none;
+}
+
+:root[data-theme="light"] .logo-adaptive {
+  filter: invert(1) brightness(0.3) sepia(1) hue-rotate(140deg) saturate(4);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .logo-adaptive {
+    filter: invert(1) brightness(0.3) sepia(1) hue-rotate(140deg) saturate(4);
+  }
+}
+
+/* Metal colors - adjust for better contrast in light mode */
+:root[data-theme="light"] .text-bronze {
+  color: #8b5a2b;
+}
+
+:root[data-theme="light"] .text-silver {
+  color: #5a5a5a;
+}
+
+:root[data-theme="light"] .text-gold {
+  color: #b8860b;
+}
+
+:root[data-theme="light"] .text-platinum {
+  color: #4a4a4a;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .text-bronze {
+    color: #8b5a2b;
+  }
+  :root:not([data-theme]) .text-silver {
+    color: #5a5a5a;
+  }
+  :root:not([data-theme]) .text-gold {
+    color: #b8860b;
+  }
+  :root:not([data-theme]) .text-platinum {
+    color: #4a4a4a;
+  }
+}
+
+/* Form select dropdown styling */
+select option {
+  background-color: var(--theme-background-card);
+  color: var(--theme-foreground);
+}
+
+/* Table header in light mode */
+:root[data-theme="light"] .bg-gradient-to-r.from-geodot-primary-light\/20 {
+  background: linear-gradient(to right, rgba(15, 118, 110, 0.15), rgba(13, 148, 136, 0.1));
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .bg-gradient-to-r.from-geodot-primary-light\/20 {
+    background: linear-gradient(to right, rgba(15, 118, 110, 0.15), rgba(13, 148, 136, 0.1));
+  }
+}
+
+/* Ensure env-green is readable in both modes */
+:root[data-theme="light"] .text-env-green {
+  color: #059669;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .text-env-green {
+    color: #059669;
+  }
+}
+
+/* Ensure geodot-primary-light text is readable in light mode */
+:root[data-theme="light"] .text-geodot-primary-light {
+  color: #0d7a70;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .text-geodot-primary-light {
+    color: #0d7a70;
+  }
 }
