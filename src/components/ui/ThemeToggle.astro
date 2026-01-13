@@ -43,66 +43,37 @@
       d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
     ></path>
   </svg>
-  <!-- System icon (shown when following system preference) -->
-  <svg
-    id="theme-icon-system"
-    class="w-5 h-5"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-    ></path>
-  </svg>
 </button>
 
 <script>
   const themeToggle = document.getElementById('theme-toggle');
   const iconLight = document.getElementById('theme-icon-light');
   const iconDark = document.getElementById('theme-icon-dark');
-  const iconSystem = document.getElementById('theme-icon-system');
 
   // Get current effective theme (what's actually displayed)
   function getEffectiveTheme(): 'light' | 'dark' {
     const stored = localStorage.getItem('theme');
     if (stored === 'light') return 'light';
     if (stored === 'dark') return 'dark';
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
-  // Get stored preference
-  function getStoredPreference(): 'light' | 'dark' | 'system' {
-    const stored = localStorage.getItem('theme');
-    if (stored === 'light') return 'light';
-    if (stored === 'dark') return 'dark';
-    return 'system';
-  }
-
-  // Update icon visibility based on current preference
+  // Update icon visibility based on effective theme
+  // Sun icon shown when in dark mode (click to switch to light)
+  // Moon icon shown when in light mode (click to switch to dark)
   function updateIcons() {
-    const preference = getStoredPreference();
-    iconLight?.classList.toggle('hidden', preference !== 'dark');
-    iconDark?.classList.toggle('hidden', preference !== 'light');
-    iconSystem?.classList.toggle('hidden', preference !== 'system');
+    const effectiveTheme = getEffectiveTheme();
+    iconLight?.classList.toggle('hidden', effectiveTheme !== 'dark');
+    iconDark?.classList.toggle('hidden', effectiveTheme !== 'light');
   }
 
   // Apply theme to document
-  function applyTheme(theme: 'light' | 'dark' | 'system') {
+  function applyTheme(theme: 'light' | 'dark') {
     // Add transition class for smooth theme change
     document.documentElement.classList.add('theme-transition');
 
-    if (theme === 'system') {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.removeItem('theme');
-    } else {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-    }
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
 
     // Remove transition class after animation completes
     setTimeout(() => {
@@ -110,19 +81,10 @@
     }, 300);
   }
 
-  // Cycle through themes: system -> light -> dark -> system
-  function cycleTheme() {
-    const current = getStoredPreference();
-    let next: 'light' | 'dark' | 'system';
-
-    if (current === 'system') {
-      next = 'light';
-    } else if (current === 'light') {
-      next = 'dark';
-    } else {
-      next = 'system';
-    }
-
+  // Toggle between light and dark
+  function toggleTheme() {
+    const current = getEffectiveTheme();
+    const next = current === 'light' ? 'dark' : 'light';
     applyTheme(next);
     updateIcons();
   }
@@ -131,12 +93,11 @@
   updateIcons();
 
   // Handle click
-  themeToggle?.addEventListener('click', cycleTheme);
+  themeToggle?.addEventListener('click', toggleTheme);
 
-  // Listen for system preference changes
-  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
-    if (getStoredPreference() === 'system') {
-      // Just trigger a re-render if following system
+  // Listen for system preference changes (update icons if no manual preference set)
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (!localStorage.getItem('theme')) {
       updateIcons();
     }
   });
